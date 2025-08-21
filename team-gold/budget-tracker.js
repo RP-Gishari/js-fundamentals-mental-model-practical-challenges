@@ -56,3 +56,14 @@ function getExpensesByCategory(category) {
     console.log('Your choice was incorrect');
   }
 }
+
+getExpensesByCategory('entertainment');
+
+const sorted = () => {
+  let arr = [];
+  for (let [key, value] of Object.entries(expense)) {
+    arr.push(value.amount);
+  }
+  return arr.sort((a, b) => a - b);
+};
+console.log(sorted());
