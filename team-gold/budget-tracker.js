@@ -38,3 +38,21 @@ function addExpense() {
 }
 const exp = addExpense();
 exp();
+
+function getExpensesByCategory(category) {
+  if (expense[0].category === category) {
+    console.log(
+      `The amount of the category called:${category} is $${expense[0].amount}`
+    );
+  } else if (expense[1].category === category) {
+    console.log(
+      `The amount of the category called:${category} is $${expense[1].amount}`
+    );
+  } else if (expense[2].category === category) {
+    console.log(
+      `The amount in the category called: ${category} is $${expense[2].amount}`
+    );
+  } else {
+    console.log('Your choice was incorrect');
+  }
+}
