@@ -1,26 +1,65 @@
 
 // 1. VARIABLES & SCOPE: Manage recipe data
-let recipeCollection = [];
+const recipeCollection = [];
 const measurementUnits = ['cups', 'tbsp', 'tsp', 'oz'];
+
+ const conversionTable = {
+    cups: 240,
+    tbsp: 15,
+    tsp: 64,
+    oz: 45
+ };
+
 function addRecipe(name, ingredients, instructions, servings) {
+  if(!name || !ingredients || !instructions || !servings){
+     console.log("missing data")
+     return;
+    };
+     
+ const recipe1 = Object.freeze({
+    name,
+    ingredients: ingredients.map(ingr => Object.freeze(ingr)),
+    instructions,
+    servings,
+  });
 
-  let addedRecipes = {
-    name: name,
-    ingredients : ingredients,
-    instructions : instructions,
-    servings: servings
-  }
+  recipeCollection.push(recipe1);
+  return recipeCollection
+};
+ 
+function scaleRecipe(recipeName, newServings){
+   const recipe2 = recipeCollection.find(rec => rec.name === recipeName);
+   if(!recipe2){
+        console.log("Recipe not found");
+        return; 
+   }
+   if(newServings <= 0){
+        console.log("Invalid number of servings");
+        return;
+   }
+ 
+  const scaleFactor = newServings / recipe2.servings;
+  
+  const scaledIngredients = recipe2.ingredients.map(ingre => ({...ingre, amount: ingre.amount * scaleFactor}));
+  return {
+    ...recipe2, 
+    ingredients : scaledIngredients,
+    servings : newServings
+  };
 
-  recipeCollection.push(addedRecipes);
-        
-  return recipeCollection;
+};
+
+function searchRecipes(ingredient) {
+
+   return recipeCollection.filter(recipe => 
+    recipe.ingredients.some(ingr => ingr.name.toLowerCase().includes(ingredient.toLowerCase())
+    )
+   );
 }
 
-console.log(JSON.stringify(addRecipe(
-    "Ugali", [{name:'cassava', amount: 56, unit: 'tbsp'}, {name: 'wheat', amount: 43, unit: "oz"}], 
-    ['boil water ata 100%', 'prepare to mix it well'], 43
-), null, 2));
-
+function convertUnit(amount, unit){
+    return conversionTable[unit] ? amount * conversionTable[unit] : null;
+}
 
 
 const recipe = {
@@ -33,3 +72,5 @@ const recipe = {
     servings: 24
 };
 
+
+module.exports = { addRecipe, scaleRecipe, searchRecipes, recipeCollection}
