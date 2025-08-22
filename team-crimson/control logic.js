@@ -21,8 +21,8 @@ const student = {
     }
 };
 
-const gradingScale = { A: 90, B: 80, C: 70, D: 60, F: 0 };
-
+let currentSemester = 'Fall 2024';
+let gradingScale = { A: 90, B: 80, C: 70, D: 60, F: 0 };
 function calculateGPA(average) {
     for (let grade in gradingScale) {
         if (average >= gradingScale[grade]) {
@@ -34,4 +34,4 @@ function calculateGPA(average) {
 
 const avg = student.calculateAverage();
 const gpa = calculateGPA(avg);
-console.log(`Average: ${avg.toFixed(2)}% → Grade: ${gpa}`);
+console.log(`Average: ${avg.toFixed(2)}%  Grade: ${gpa}`);

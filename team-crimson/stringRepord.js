@@ -9,15 +9,14 @@ const student = {
     calculateAverage: function() {
         if (this.assignments.length === 0) return 0;
         const total = this.assignments.reduce((sum, a) => sum + a.score, 0);
-        return total / this.assignments.length;
+        return` ${(total / this.assignments.length).toFixed(2)}%`;
+    },
+    calculateTotal: function() {
+        return `${this.assignments.reduce((sum, a) => sum + a.score, 0).toFixed(2)} %`
     }
 };
-
-const report = new student;
-const head = [];
-
-for (let key in report) {   head.push(key + "||");
-}
-console.log(report.name); 
-console.log(head.join(' '));         
-console.log(report.calculateAverage()); 
+const report = Object.create(student);
+console.log("Student Name:", report.name);
+console.log("Total Score:", report.calculateTotal());
+console.log("Average Score:", report.calculateAverage());
+console.table(report.assignments);
