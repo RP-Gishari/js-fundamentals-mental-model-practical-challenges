@@ -1,9 +1,4 @@
-export const student = {
-    name: 'Alice Johnson',
-    subjects: ['Math', 'Science', 'English'],
-    assignments: [],
-    calculateAverage: function() { /* method challenge */ }
-};
+import { student } from "./averageCulculate.js";
 export function addAssignment(subject, assignmentName, score, maxPoints) {
     if(typeof(subject)!=="string"||typeof(assignmentName)!=="string"||typeof(score)!=="number"||typeof(maxPoints)!=="number"){
         return "invalid input"
@@ -11,8 +6,12 @@ export function addAssignment(subject, assignmentName, score, maxPoints) {
       if (student.subjects.includes(subject)) {
         return "Subject already exist";
     }
-student.assignments.push(subject, assignmentName, score, maxPoints)
+student.assignments.push({
+  subject,
+  assignmentName,
+  score,
+  maxPoints
+});
 student.subjects.push(subject)
-return student.subjects
 }
 console.log(addAssignment("french", "quizes", 100, 100))

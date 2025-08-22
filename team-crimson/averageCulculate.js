@@ -2,7 +2,7 @@ export const student = {
     name: 'Alice Johnson',
     subjects: ['Math', 'Science', 'English'],
     assignments: [
-        { subject: 'Math', assignmentName: 'quiz1', score: 45, maxPoints: 50 },   
+        { subject: 'Math', assignmentName:["quiz", "exam"], score: 45, maxPoints: 50 },   
         { subject: 'Science', assignmentName: 'report', score: 85, maxPoints: 100 },
         { subject: 'English', assignmentName: 'essay', score: 18, maxPoints: 20 }    
     ],
