@@ -1,5 +1,5 @@
 
-const { addRecipe, scaleRecipe, searchRecipes, recipeCollection} = require('./recipe-manager');
+const { addRecipe, scaleRecipe, searchRecipes, recipeCollection, convertUnit } = require('./recipe-manager');
 
 addRecipe(
     'ubugali',
@@ -15,6 +15,8 @@ console.log(scaledUbugali);
 
 const watRecipes = searchRecipes('water');
 console.log(watRecipes.map(w => w.name));
+
+console.log(convertUnit(2, 'cups'));
 
 
 console.log(JSON.stringify(recipeCollection));

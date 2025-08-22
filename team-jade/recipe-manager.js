@@ -73,4 +73,4 @@ const recipe = {
 };
 
 
-module.exports = { addRecipe, scaleRecipe, searchRecipes, recipeCollection}
+module.exports = { addRecipe, scaleRecipe, searchRecipes, recipeCollection, convertUnit}
